@@ -384,12 +384,19 @@
         /* Projects - Quest Cards */
         .quest-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 420px));
             gap: 2rem;
+            justify-content: center;
         }
 
         .quest-card {
             position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quest-card .quest-actions {
+            margin-top: auto;
         }
 
         .quest-header {
@@ -406,12 +413,29 @@
         }
 
         .quest-level {
-            background: var(--neon-purple);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
+            background: var(--neon-purple);
+        }
+
+        /* Ranking tiers — visual hierarchy */
+        .rank-s {
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            box-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
+            color: #fff;
+        }
+        .rank-a {
+            background: rgba(183, 68, 255, 0.15);
+            border: 1px solid var(--neon-purple);
+            color: var(--neon-purple);
+        }
+        .rank-b {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
         }
 
         .quest-desc {
@@ -441,6 +465,48 @@
             color: var(--neon-pink);
             font-weight: 600;
             font-size: 0.9rem;
+        }
+
+        .quest-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px dashed rgba(0, 240, 255, 0.2);
+        }
+
+        .quest-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            background: rgba(0, 240, 255, 0.05);
+            color: var(--neon-blue);
+        }
+
+        .quest-btn:hover {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .quest-btn.primary {
+            background: linear-gradient(135deg, rgba(183, 68, 255, 0.2), rgba(255, 0, 110, 0.2));
+            border-color: var(--neon-purple);
+            color: var(--neon-pink);
+        }
+
+        .quest-btn.primary:hover {
+            box-shadow: 0 0 20px rgba(183, 68, 255, 0.5);
         }
 
         /* Skills - Power-ups Grid */
@@ -707,7 +773,6 @@
         }
     </style>
 <base target="_blank">
-<base target="_blank">
 </head>
 <body>
     <div class="grid-bg"></div>
@@ -750,7 +815,7 @@
                 <div class="avatar-container">
                     <div class="avatar-glow"></div>
                     <div class="avatar" style="display: flex; align-items: center; justify-content: center; overflow: hidden; background: linear-gradient(135deg, #1a1f3a, #2d3561);">
-                       <img src="profile_avatar.jpeg" alt="Tummanapally Sidhartha" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+                        <img src="https://raw.githubusercontent.com/sidharthabhi/portfolio/refs/heads/main/profile_avatar.jpeg" alt="Tummanapally Sidhartha" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size: 4rem;\'>📊</div>';">
                     </div>
                 </div>
                 <h1 class="glitch">Sidhartha_Quest</h1>
@@ -781,29 +846,40 @@
                 <p class="section-subtitle">Understanding the player</p>
             </div>
             <div class="game-card">
-                <h3 style="color: var(--neon-purple); font-size: 1.5rem; margin-bottom: 1rem;">[ OBJECTIVE ]</h3>
-                <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem;">
-                    Currently pursuing B.Tech in Computer Science and Engineering at SR University, Warangal (Expected: 2026). 
-                    I specialize in transforming raw data into actionable business intelligence. From cleaning and analyzing 47,382+ 
-                    restaurant records to detecting fraud patterns in 284,807 transactions — I leverage statistical analysis, 
-                    hypothesis testing, and dashboard development to drive data-informed decisions.
+                <h3 style="color: var(--neon-purple); font-size: 1.5rem; margin-bottom: 1rem;">[ PLAYER PROFILE ]</h3>
+                <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem; margin-bottom: 1.2rem;">
+                    I'm a final-year B.Tech CSE student at <strong style="color: var(--neon-blue);">SR University, Warangal</strong>, 
+                    building a career in data analytics the hard way — by shipping projects that solve real problems, 
+                    not by hoarding certificates.
                 </p>
-                <div style="margin-top: 2rem; display: flex; gap: 2rem; flex-wrap: wrap;">
+                <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem; margin-bottom: 1.2rem;">
+                    My edge: I treat every dataset as a business problem first, code problem second. Whether it's engineering 
+                    a <strong style="color: var(--neon-pink);">Decision-Intelligence Framework</strong> that auto-generates Hike/Retain/Review 
+                    calls from 6 months of employee data, or building a <strong style="color: var(--neon-pink);">7-season F1 Strategy 
+                    Dashboard</strong> tracking tire degradation and undercut success across 193K+ laps — I care about the story 
+                    the numbers are trying to tell.
+                </p>
+                <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem;">
+                    Currently training as an <strong style="color: var(--neon-green);">LLM Post-Training Intern</strong> — 
+                    learning how the AI tools reshaping my field actually get built. Goal: be the analyst who understands 
+                    both the SQL and the system.
+                </p>
+                <div style="margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem;">
                     <div>
-                        <div style="color: var(--neon-blue); font-size: 2rem; font-weight: 700;">2026</div>
-                        <div style="color: var(--text-secondary);">Graduation Year</div>
+                        <div style="color: var(--neon-blue); font-size: 2rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;">B.Tech '26</div>
+                        <div style="color: var(--text-secondary); font-size: 0.85rem;">SR University CSE</div>
                     </div>
                     <div>
-                        <div style="color: var(--neon-pink); font-size: 2rem; font-weight: 700;">SR Uni</div>
-                        <div style="color: var(--text-secondary);">Home Base</div>
+                        <div style="color: var(--neon-pink); font-size: 2rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;">525K+</div>
+                        <div style="color: var(--text-secondary); font-size: 0.85rem;">Rows Analyzed</div>
                     </div>
                     <div>
-                        <div style="color: var(--neon-purple); font-size: 2rem; font-weight: 700;">CSE</div>
-                        <div style="color: var(--text-secondary);">Class Type</div>
+                        <div style="color: var(--neon-purple); font-size: 2rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;">3</div>
+                        <div style="color: var(--text-secondary); font-size: 0.85rem;">End-to-End Projects</div>
                     </div>
                     <div>
-                        <div style="color: var(--neon-green); font-size: 2rem; font-weight: 700;">Power BI</div>
-                        <div style="color: var(--text-secondary);">Primary Weapon</div>
+                        <div style="color: var(--neon-green); font-size: 2rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;">Python</div>
+                        <div style="color: var(--text-secondary); font-size: 0.85rem;">+ SQL + Power BI</div>
                     </div>
                 </div>
             </div>
@@ -815,61 +891,73 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Active_Quests</h2>
-                <p class="section-subtitle">Data analysis & business intelligence missions</p>
+                <p class="section-subtitle">Data analysis, BI & end-to-end platform builds</p>
             </div>
             <div class="quest-grid">
-                <!-- Quest 1: Decision Intelligence Framework -->
+                <!-- Quest 1: F1 Strategy Intelligence Dashboard -->
+                <div class="game-card quest-card">
+                    <div class="quest-header">
+                        <h3 class="quest-title">🏎️ F1 Strategy Intelligence Dashboard</h3>
+                        <span class="quest-level rank-s">S-Rank</span>
+                    </div>
+                    <p class="quest-desc">
+                        End-to-end race analytics platform covering <strong style="color: var(--neon-blue);">7 F1 seasons (2018–2024)</strong> — 
+                        ingested telemetry from 4 APIs (FastF1, Ergast, OpenF1, Weather), loaded into a normalized <strong style="color: var(--neon-blue);">7-table SQLite schema (193K+ laps, 12K+ pit stops)</strong>, 
+                        and delivered insights through a 7-page Power BI dashboard. Engineered custom metrics including Tire Management Index, 
+                        Undercut Success Rate, and Lap Time Consistency Score — the same questions F1 strategists answer in the paddock.
+                    </p>
+                    <div class="tech-chips">
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">FastF1</span>
+                        <span class="tech-chip">SQLite</span>
+                        <span class="tech-chip">Power BI</span>
+                        <span class="tech-chip">Pandas</span>
+                        <span class="tech-chip">APScheduler</span>
+                    </div>
+                    <p class="quest-reward">Scope: 20 analytical SQL queries · 30+ visuals · Live race simulation mode</p>
+                    <div class="quest-actions">
+                        <a href="https://github.com/sidharthabhi" target="_blank" class="quest-btn primary">🔗 View Repository</a>
+                    </div>
+                </div>
+
+                <!-- Quest 2: Decision Intelligence Framework -->
                 <div class="game-card quest-card">
                     <div class="quest-header">
                         <h3 class="quest-title">📊 Decision-Intelligence Framework</h3>
-                        <span class="quest-level">S-Rank</span>
+                        <span class="quest-level rank-a">A-Rank</span>
                     </div>
                     <p class="quest-desc">
-                        Analyzed 3–6 months of employee performance data to compute normalized scores on a 0–100 scale. 
-                        Applied regression-based trend analysis to identify Improving, Stable, and Declining performance patterns. 
-                        Delivered data-driven recommendations (Hike / Retain / Under Review) to support managerial decision-making.
+                        Owned backend architecture on a full-stack performance evaluation system for SMEs. 
+                        Designed a <strong style="color: var(--neon-blue);">7-stage Excel upload pipeline</strong> processing 3–6 months of employee data, 
+                        computed normalized 0–100 scores with zero-tolerance violation logic, and applied pure-Python linear regression 
+                        to classify trends (Improving / Stable / Declining). Delivered a Hike / Retain / Under Review suggestion engine 
+                        with confidence scoring — turning raw timesheets into managerial decisions.
                     </p>
                     <div class="tech-chips">
+                        <span class="tech-chip">FastAPI</span>
+                        <span class="tech-chip">PostgreSQL</span>
+                        <span class="tech-chip">React 18</span>
                         <span class="tech-chip">Python</span>
-                        <span class="tech-chip">Pandas</span>
                         <span class="tech-chip">Linear Regression</span>
-                        <span class="tech-chip">Excel</span>
-                        <span class="tech-chip">Trend Analysis</span>
+                        <span class="tech-chip">Chart.js</span>
                     </div>
-                    <p class="quest-reward">Achievement: Business Intelligence System Deployed</p>
+                    <p class="quest-reward">Achievement: 29 backend files · JSONB storage · Live decision engine</p>
+                    <div class="quest-actions">
+                        <a href="https://github.com/sidharthabhi" target="_blank" class="quest-btn primary">🔗 View Repository</a>
+                    </div>
                 </div>
 
-                <!-- Quest 2: Zomato Analytics -->
-                <div class="game-card quest-card">
-                    <div class="quest-header">
-                        <h3 class="quest-title">🍽️ Zomato Restaurant Analytics</h3>
-                        <span class="quest-level">Epic</span>
-                    </div>
-                    <p class="quest-desc">
-                        Cleaned and analyzed 47,382 restaurant records across 15+ Indian cities, documenting an 8.4% data rejection rate. 
-                        Executed SQL-based analysis and statistical hypothesis testing to determine key factors influencing restaurant ratings. 
-                        Built Power BI dashboards delivering 6 actionable business insights, including a 300–600 optimal pricing range.
-                    </p>
-                    <div class="tech-chips">
-                        <span class="tech-chip">Python</span>
-                        <span class="tech-chip">Pandas</span>
-                        <span class="tech-chip">SQL</span>
-                        <span class="tech-chip">Power BI</span>
-                        <span class="tech-chip">Hypothesis Testing</span>
-                    </div>
-                    <p class="quest-reward">Insight: 6 Business Recommendations Generated</p>
-                </div>
-
-                <!-- Quest 3: Fraud Detection -->
+                <!-- Quest 3: Credit Card Fraud Detection -->
                 <div class="game-card quest-card">
                     <div class="quest-header">
                         <h3 class="quest-title">💳 Credit Card Fraud Detection</h3>
-                        <span class="quest-level">Epic</span>
+                        <span class="quest-level rank-b">B-Rank</span>
                     </div>
                     <p class="quest-desc">
-                        Analyzed 284,807 transactions to examine fraud patterns in highly imbalanced datasets (0.17% fraud rate). 
-                        Evaluated analytical outputs using F1-score and PR-AUC to ensure reliable minority-class performance assessment. 
-                        Translated analytical results into a 4-tier risk categorization system to support business decision-making.
+                        Analyzed <strong style="color: var(--neon-blue);">284,807 transactions</strong> to identify fraud patterns in a highly imbalanced 
+                        dataset (0.17% fraud rate). Evaluated with F1-score and PR-AUC — the right metrics for minority-class problems, 
+                        not accuracy. Translated model outputs into a 4-tier risk categorization system that a business team can actually 
+                        act on, not just a confusion matrix.
                     </p>
                     <div class="tech-chips">
                         <span class="tech-chip">Python</span>
@@ -878,7 +966,10 @@
                         <span class="tech-chip">SMOTE</span>
                         <span class="tech-chip">Risk Scoring</span>
                     </div>
-                    <p class="quest-reward">Performance: F1=0.88 | PR AUC=0.87</p>
+                    <p class="quest-reward">Performance: F1 = 0.88 · PR-AUC = 0.87</p>
+                    <div class="quest-actions">
+                        <a href="https://github.com/sidharthabhi" target="_blank" class="quest-btn primary">🔗 View Repository</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -909,6 +1000,8 @@
                         <span class="power-item">SQL</span>
                         <span class="power-item">Oracle SQL</span>
                         <span class="power-item">PostgreSQL</span>
+                        <span class="power-item">SQLite</span>
+                        <span class="power-item">FastAPI</span>
                     </div>
                 </div>
 
@@ -968,21 +1061,24 @@
                 <div class="internship-card">
                     <div class="internship-header">
                         <div>
-                            <h3 style="color: var(--neon-blue); font-size: 1.5rem; margin-bottom: 0.5rem;">📊 Data Analyst Intern</h3>
-                            <div class="internship-company">Strong Signal Media</div>
+                            <h3 style="color: var(--neon-blue); font-size: 1.5rem; margin-bottom: 0.5rem;">🤖 LLM Post-Training Intern</h3>
+                            <div class="internship-company">Ethara · Remote</div>
                         </div>
-                        <span class="internship-duration">3 Months</span>
+                        <span class="internship-duration">Feb 2026 – Jun 2026</span>
                     </div>
                     <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
-                        Analyzed task and workflow data to identify operational bottlenecks and improve task tracking visibility. 
-                        Implemented backend data validation and handling logic for employee task records and reporting pipelines. 
-                        Coordinated with cross-functional teams to maintain data consistency across internal analytics dashboards.
+                        Working on the human side of how large language models get refined after base training — 
+                        contributing to AI training data curation, quality evaluation, and response annotation pipelines that 
+                        shape how LLMs behave in production. Reviewing and rating model outputs across reasoning, coding, and 
+                        factuality dimensions to feed reinforcement learning from human feedback (RLHF) and supervised fine-tuning workflows. 
+                        Gaining first-hand exposure to the evaluation frameworks behind the AI tools reshaping the data-analyst profession.
                     </p>
                     <div class="tech-chips">
-                        <span class="tech-chip">Data Analysis</span>
-                        <span class="tech-chip">Workflow Optimization</span>
-                        <span class="tech-chip">Dashboard Design</span>
-                        <span class="tech-chip">Data Validation</span>
+                        <span class="tech-chip">LLM Evaluation</span>
+                        <span class="tech-chip">RLHF Data</span>
+                        <span class="tech-chip">Annotation Quality</span>
+                        <span class="tech-chip">Prompt Analysis</span>
+                        <span class="tech-chip">AI Training Pipelines</span>
                     </div>
                 </div>
 
@@ -1170,7 +1266,7 @@
     <footer>
         <div class="game-over">THANKS FOR PLAYING</div>
         <p style="color: var(--text-secondary); font-size: 1.1rem; margin-top: 1rem;">
-            © 2025 Tummanapally Sidhartha | Data Analyst | SR University
+            © 2026 Tummanapally Sidhartha | Data Analyst | SR University
         </p>
         <p style="color: var(--neon-blue); margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace;">
             &gt; System.out.println("Converting raw data into actionable business insights"); ✨
