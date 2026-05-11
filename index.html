@@ -402,7 +402,8 @@
         .quest-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+            gap: 1rem;
             margin-bottom: 1rem;
         }
 
@@ -410,6 +411,9 @@
             font-size: 1.5rem;
             color: var(--neon-blue);
             text-shadow: 0 0 10px var(--neon-blue);
+            line-height: 1.3;
+            flex: 1;
+            min-width: 0;
         }
 
         .quest-level {
@@ -419,6 +423,11 @@
             font-weight: 600;
             text-transform: uppercase;
             background: var(--neon-purple);
+            white-space: nowrap;
+            flex-shrink: 0;
+            align-self: flex-start;
+            margin-top: 0.35rem;
+            letter-spacing: 0.5px;
         }
 
         /* Ranking tiers — visual hierarchy */
@@ -507,6 +516,39 @@
 
         .quest-btn.primary:hover {
             box-shadow: 0 0 20px rgba(183, 68, 255, 0.5);
+        }
+
+        .quest-btn.live {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.18), rgba(0, 240, 255, 0.12));
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .quest-btn.live::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--neon-green);
+            box-shadow: 0 0 8px var(--neon-green);
+            transform: translateY(-50%);
+            animation: livePulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--neon-green); }
+            50% { opacity: 0.5; box-shadow: 0 0 16px var(--neon-green); }
+        }
+
+        .quest-btn.live:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.28), rgba(0, 240, 255, 0.18));
+            box-shadow: 0 0 22px rgba(0, 255, 136, 0.45);
+            color: #fff;
         }
 
         /* Skills - Power-ups Grid */
@@ -790,7 +832,7 @@
         </div>
         <div class="stat-box">
             <div class="stat-label">Quests</div>
-            <div class="stat-value">3/3</div>
+            <div class="stat-value">4/4</div>
         </div>
     </div>
 
@@ -826,14 +868,6 @@
                     and decision-making support.
                 </p>
                 <button class="start-btn" onclick="startGame()">Initialize Quest</button>
-                <br>
-                <a href="https://drive.google.com/file/d/1TtOZia914j34lAhgMhBHxQQXGLNzLcf6/view?usp=sharing" target="_blank" class="resume-btn">
-                    <span>📄 Download Resume</span>
-                </a>
-                <br>
-                <a href="https://github.com/sidharthabhi" target="_blank" class="github-link">
-                    <span>⚡ View Code on GitHub</span>
-                </a>
             </div>
         </div>
     </section>
@@ -853,11 +887,12 @@
                     not by hoarding certificates.
                 </p>
                 <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem; margin-bottom: 1.2rem;">
-                    My edge: I treat every dataset as a business problem first, code problem second. Whether it's engineering 
-                    a <strong style="color: var(--neon-pink);">Decision-Intelligence Framework</strong> that auto-generates Hike/Retain/Review 
+                    My edge: I treat every dataset as a business problem first, code problem second. Whether it&rsquo;s shipping 
+                    <strong style="color: var(--neon-pink);">Career Ledger</strong> &mdash; a live full-stack job-application tracker with JWT auth, 
+                    a JD-keyword analytics engine, and zero-config deploys on Vercel + Render &mdash; or engineering a 
+                    <strong style="color: var(--neon-pink);">Decision-Intelligence Framework</strong> that auto-generates Hike/Retain/Review 
                     calls from 6 months of employee data, or building a <strong style="color: var(--neon-pink);">7-season F1 Strategy 
-                    Dashboard</strong> tracking tire degradation and undercut success across 193K+ laps — I care about the story 
-                    the numbers are trying to tell.
+                    Dashboard</strong> across 193K+ laps &mdash; I care about the story the numbers are trying to tell.
                 </p>
                 <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem;">
                     Currently training as an <strong style="color: var(--neon-green);">LLM Post-Training Intern</strong> — 
@@ -874,7 +909,7 @@
                         <div style="color: var(--text-secondary); font-size: 0.85rem;">Rows Analyzed</div>
                     </div>
                     <div>
-                        <div style="color: var(--neon-purple); font-size: 2rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;">3</div>
+                        <div style="color: var(--neon-purple); font-size: 2rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;">4</div>
                         <div style="color: var(--text-secondary); font-size: 0.85rem;">End-to-End Projects</div>
                     </div>
                     <div>
@@ -894,7 +929,37 @@
                 <p class="section-subtitle">Data analysis, BI & end-to-end platform builds</p>
             </div>
             <div class="quest-grid">
-                <!-- Quest 1: F1 Strategy Intelligence Dashboard -->
+                <!-- Quest 1: Career Ledger - flagship production project -->
+                <div class="game-card quest-card">
+                    <div class="quest-header">
+                        <h3 class="quest-title">📒 Career Ledger</h3>
+                        <span class="quest-level rank-s">S-Rank</span>
+                    </div>
+                    <p class="quest-desc">
+                        Full-stack, <strong style="color: var(--neon-green);">live in production</strong> — a private job-application 
+                        command center built end-to-end. <strong style="color: var(--neon-blue);">FastAPI + PostgreSQL + React 18</strong> 
+                        backend with JWT auth, bcrypt password hashing, multi-tenant data isolation, and resume file uploads. The 
+                        differentiator is the <strong style="color: var(--neon-blue);">JD keyword extraction engine</strong> — a two-pass 
+                        tokenizer with a 200+ word stop-list that surfaces which skills recur across the job descriptions a user 
+                        actually targets. Deployed on Vercel + Render with CI/CD on every push.
+                    </p>
+                    <div class="tech-chips">
+                        <span class="tech-chip">FastAPI</span>
+                        <span class="tech-chip">PostgreSQL</span>
+                        <span class="tech-chip">React 18</span>
+                        <span class="tech-chip">SQLAlchemy 2.0</span>
+                        <span class="tech-chip">JWT Auth</span>
+                        <span class="tech-chip">Chart.js</span>
+                        <span class="tech-chip">Vercel</span>
+                        <span class="tech-chip">Render</span>
+                    </div>
+                    <p class="quest-reward">Scope: 12 REST endpoints · 6 KPIs · Live JD keyword analytics · Auto-deployed</p>
+                    <div class="quest-actions">
+                        <a href="https://career-ledger-taupe.vercel.app" target="_blank" rel="noopener" class="quest-btn live">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Quest 2: F1 Strategy Intelligence Dashboard -->
                 <div class="game-card quest-card">
                     <div class="quest-header">
                         <h3 class="quest-title">🏎️ F1 Strategy Intelligence Dashboard</h3>
@@ -915,12 +980,9 @@
                         <span class="tech-chip">APScheduler</span>
                     </div>
                     <p class="quest-reward">Scope: 20 analytical SQL queries · 30+ visuals · Live race simulation mode</p>
-                    <div class="quest-actions">
-                        <a href="https://github.com/sidharthabhi" target="_blank" class="quest-btn primary">🔗 View Repository</a>
-                    </div>
                 </div>
 
-                <!-- Quest 2: Decision Intelligence Framework -->
+                <!-- Quest 3: Decision Intelligence Framework -->
                 <div class="game-card quest-card">
                     <div class="quest-header">
                         <h3 class="quest-title">📊 Decision-Intelligence Framework</h3>
@@ -942,12 +1004,9 @@
                         <span class="tech-chip">Chart.js</span>
                     </div>
                     <p class="quest-reward">Achievement: 29 backend files · JSONB storage · Live decision engine</p>
-                    <div class="quest-actions">
-                        <a href="https://github.com/sidharthabhi" target="_blank" class="quest-btn primary">🔗 View Repository</a>
-                    </div>
                 </div>
 
-                <!-- Quest 3: Credit Card Fraud Detection -->
+                <!-- Quest 4: Credit Card Fraud Detection -->
                 <div class="game-card quest-card">
                     <div class="quest-header">
                         <h3 class="quest-title">💳 Credit Card Fraud Detection</h3>
@@ -967,9 +1026,6 @@
                         <span class="tech-chip">Risk Scoring</span>
                     </div>
                     <p class="quest-reward">Performance: F1 = 0.88 · PR-AUC = 0.87</p>
-                    <div class="quest-actions">
-                        <a href="https://github.com/sidharthabhi" target="_blank" class="quest-btn primary">🔗 View Repository</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -990,6 +1046,7 @@
                         <span class="power-item">NumPy</span>
                         <span class="power-item">Exploratory Data Analysis</span>
                         <span class="power-item">Data Cleaning</span>
+                        <span class="power-item">Keyword Extraction / NLP</span>
                     </div>
                 </div>
 
@@ -1001,7 +1058,32 @@
                         <span class="power-item">Oracle SQL</span>
                         <span class="power-item">PostgreSQL</span>
                         <span class="power-item">SQLite</span>
+                        <span class="power-item">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="game-card power-category">
+                    <h3>⚙️ Backend & APIs</h3>
+                    <div class="power-items">
                         <span class="power-item">FastAPI</span>
+                        <span class="power-item">REST APIs</span>
+                        <span class="power-item">SQLAlchemy 2.0</span>
+                        <span class="power-item">Pydantic</span>
+                        <span class="power-item">JWT Auth</span>
+                        <span class="power-item">bcrypt</span>
+                        <span class="power-item">OpenAPI / Swagger</span>
+                    </div>
+                </div>
+
+                <div class="game-card power-category">
+                    <h3>🎨 Frontend</h3>
+                    <div class="power-items">
+                        <span class="power-item">React 18</span>
+                        <span class="power-item">Vite</span>
+                        <span class="power-item">React Router</span>
+                        <span class="power-item">Axios</span>
+                        <span class="power-item">Chart.js</span>
+                        <span class="power-item">HTML/CSS</span>
                     </div>
                 </div>
 
@@ -1036,13 +1118,15 @@
                 </div>
 
                 <div class="game-card power-category">
-                    <h3>🛠️ DevOps & Tools</h3>
+                    <h3>☁️ Deployment & DevOps</h3>
                     <div class="power-items">
+                        <span class="power-item">Vercel</span>
+                        <span class="power-item">Render</span>
                         <span class="power-item">Git</span>
                         <span class="power-item">GitHub</span>
+                        <span class="power-item">CI/CD on Push</span>
+                        <span class="power-item">CORS</span>
                         <span class="power-item">VS Code</span>
-                        <span class="power-item">Excel Processing</span>
-                        <span class="power-item">PostgreSQL</span>
                     </div>
                 </div>
             </div>
